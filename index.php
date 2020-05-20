@@ -6,7 +6,6 @@ error_reporting(E_ALL);
 //start a session
 session_start();
 
-
 //require the auto load file
 require_once ("vendor/autoload.php");
 require_once ("model/data-layer.php");
@@ -22,8 +21,16 @@ $f3->route('GET /', function()
 
 });
 
+//summary route
+$f3->route('GET /summary', function()
+{
+    $view = new Template();
+    echo $view->render('views/summary.html');
+});
+
+
 //survey route
-$f3->route('GET /survey', function($f3)
+$f3->route('GET|POST /survey', function($f3)
 {
     $options = getOptions();
 
@@ -32,13 +39,14 @@ $f3->route('GET /survey', function($f3)
     {
         //store the data in the session array
         $_SESSION['options'] = $_POST['options'];
+        $_SESSION['name'] = $_POST['name'];
 
         $f3->reroute('summary');
         session_destroy();
-
     }
 
     $f3->set('options', $options);
+
 
     $view = new Template();
     echo $view->render('views/survey.html');
