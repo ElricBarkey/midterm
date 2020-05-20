@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Survey</title>
+
+    <!-- bootstrap -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Midterm Survey</h1>
+
+        <form action="#" method="post" class="form-horizontal">
+
+            <!-- get their name-->
+            <div class="form-group">
+                <label for="name" class="col-sm-2 control-label">Name</label>
+
+                <div class="col-sm-4">
+                    <input class="form-control" type="text" name="name" id="name">
+                </div>
+            </div>
+
+            <!-- get sauce -->
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Check all that apply:</label>
+
+                <div class="col-sm-4">
+                    <repeat group="{{@options }}" value="{{ @option }}">
+                        <input type="checkbox" name="options[]" value="{{@option}}"> {{ucfirst(@option)}}</input><br>
+                    </repeat>
+                </div>
+            </div>
+
+
+            <div class="col-xs-3 ">
+                <input class="form-control btn btn-default"
+                       type="submit" value="Submit">
+            </div>
+        </form>
+    </div>
+</body>
+</html>
