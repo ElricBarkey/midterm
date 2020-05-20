@@ -17,6 +17,7 @@ $f3 = Base::instance();
 $f3->route('GET /', function()
 {
     echo "<h1>Midterm Survey</h1>";
+    echo "<a href= '#' >Take my Midterm Survey</a>";
     //$view = new Template();
     //echo $view->render('views/home.html');
 });
