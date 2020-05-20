@@ -12,44 +12,26 @@ require_once ("model/data-layer.php");
 
 //instantiate the F3 Base class
 $f3 = Base::instance();
+$validator = new Validate();
+$controller = new Controller($f3, $validator);
 
 //default route
 $f3->route('GET /', function()
 {
-    echo "<h1>Midterm Survey</h1>";
-    echo "<a href= 'survey' >Take my Midterm Survey</a>";
-
+    $GLOBALS['controller']->home();
 });
 
 //summary route
 $f3->route('GET /summary', function()
 {
-    $view = new Template();
-    echo $view->render('views/summary.html');
+    $GLOBALS['controller']->summary();
 });
 
 
 //survey route
 $f3->route('GET|POST /survey', function($f3)
 {
-    $options = getOptions();
-
-    //if the form has been submitted
-    if($_SERVER['REQUEST_METHOD'] == 'POST')
-    {
-        //store the data in the session array
-        $_SESSION['options'] = $_POST['options'];
-        $_SESSION['name'] = $_POST['name'];
-
-        $f3->reroute('summary');
-        session_destroy();
-    }
-
-    $f3->set('options', $options);
-
-
-    $view = new Template();
-    echo $view->render('views/survey.html');
+    $GLOBALS['controller']->survey();
 });
 
 

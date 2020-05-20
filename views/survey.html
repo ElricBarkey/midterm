@@ -29,14 +29,25 @@
                 </div>
             </div>
 
-            <!-- get sauce -->
+            <!-- get option -->
             <div class="form-group">
                 <label class="col-sm-2 control-label">Check all that apply:</label>
 
                 <div class="col-sm-4">
                     <repeat group="{{@options }}" value="{{ @option }}">
-                        <input type="checkbox" name="options[]" value="{{@option}}"> {{ucfirst(@option)}}</input><br>
+                        <input type="checkbox" name="options[]" value="{{@option}}"
+                        <check if="{{@option == @selectedOptions}}">
+                            checked = checked
+                        </check>
+
+                        >{{ucfirst(@option)}}</input><br>
                     </repeat>
+
+                    <span class="err">
+                    <check if="{{isset(@errors['option']) }}">
+                        {{@errors['option']}}
+                    </check>
+                </span>
                 </div>
             </div>
 
@@ -47,5 +58,6 @@
             </div>
         </form>
     </div>
+    <link href="styles/survey.css" rel="stylesheet">
 </body>
 </html>
